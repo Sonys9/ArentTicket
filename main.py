@@ -65,15 +65,20 @@ if not os.path.exists('proxies.txt'):
     os._exit(1)
 with open('proxies.txt', 'r') as f:
     proxies = f.read().strip().split('\n')
+    if not proxies or proxies == ['']:
+        print(f'{Fore.CYAN}Прокси{Fore.RESET} отсутствуют. Добавьте прокси в файл proxies.txt')
+        os._exit(1)
+
 print(f'Доступно {Fore.CYAN}{len(proxies)}{Fore.RESET} прокси')
+
+if len(proxies) < 6:
+    print(f'Использование меньше {Fore.CYAN}6{Fore.RESET} прокси не рекомендуется')
 sleep(1)
 
 def fetch_page_soup(catch_link):
     r = requests.get(catch_link, headers=headers_get)
     soup = BeautifulSoup(r.text, 'html.parser')
     return soup
-
-page_soup = fetch_page_soup(catch_link)
 
 def add_to_busket(session_id, places, proxy):
     r = requests.post('https://kinoteatr.ru/cgi-bin/api_widget.pl', json={
