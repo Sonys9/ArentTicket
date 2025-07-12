@@ -5,7 +5,8 @@
 Автор не несет ответственности за ваши действия. Не используйте скрипт в плохих намерениях. Используйте скрипт для изучения кода для парсинга и отправки запросов с использованием прокси.
 
 ## Скриншоты
-<img width="633" height="919" alt="image" src="https://github.com/user-attachments/assets/868b674c-d611-4cbd-b3fe-faca95837817" />
+<img width="635" height="167" alt="image" src="https://github.com/user-attachments/assets/3256417f-f2c2-435b-8b9a-e29b38b6a4b2" />
+
 <img width="630" height="645" alt="image" src="https://github.com/user-attachments/assets/9e2d876b-b73b-4adf-9dde-73c2a95e7abb" />
 
 ## Установка (windows)
