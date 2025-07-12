@@ -14,6 +14,20 @@ init()
 catch_link = input(f'Пример: {Fore.CYAN}https://kinoteatr.ru/raspisanie-kinoteatrov/city/kinoteatralka/?date=2021-01-01{Fore.RESET}\nВведите ссылку на страницу с {Fore.CYAN}фильмами{Fore.RESET}:\t{Fore.CYAN}').strip()
 print(Fore.RESET, end='')
 
+rows_to_arent = input(f'Примеры: {Fore.CYAN}10-15, 15, 9{Fore.RESET}\nВведите ряды для {Fore.CYAN}брони{Fore.RESET} ({Fore.CYAN}можно пропустить если хотите все{Fore.RESET}):\t{Fore.CYAN}').strip()
+print(Fore.RESET, end='')
+
+if not rows_to_arent: rows_to_arent = '1-1000'
+rows = rows_to_arent.split('-')
+if len(rows) == 1:
+    row_from, row_to = rows_to_arent, rows_to_arent
+else:
+    row_from, row_to = rows_to_arent.split('-')
+
+if not row_from.isnumeric() or not row_to.isnumeric():
+    print('Вы ввели некорректные ряды')
+    os._exit(1)
+
 headers_post = {
     "authority": "kinoteatr.ru",
     "method": "POST",
@@ -70,9 +84,6 @@ with open('proxies.txt', 'r') as f:
         os._exit(1)
 
 print(f'Доступно {Fore.CYAN}{len(proxies)}{Fore.RESET} прокси')
-
-if len(proxies) < 6:
-    print(f'Использование меньше {Fore.CYAN}6{Fore.RESET} прокси не рекомендуется')
 sleep(1)
 
 def fetch_page_soup(catch_link):
@@ -183,7 +194,6 @@ while True:
         hall_places = get_hall_places(all_films_times[choice_id]['id'], catch_link)
         if 'error' in hall_places.keys():
             print(f'Ошибка при получении мест: {Fore.RED}{hall_places["error"]["code"]} {hall_places["error"]["message"]}{Fore.RESET}')
-            sleep(15)
             continue
         print(f'''Информация о фильме и зале:
 Дата показа: {Fore.CYAN}{hall_places["result"]["SessionInfo"]["Date_string"]}{Fore.RESET}
@@ -203,6 +213,7 @@ while True:
                     payload = []
                     for place in places:
                         if place['Status'] != '1': continue
+                        if place['Row'] < int(row_from) or place['Row'] > int(row_to): continue
                         payload.append({
                             "PlaceID": place['ID'],
                             "Price": 670,
@@ -227,3 +238,5 @@ while True:
                     print(f'Ошибка: {Fore.CYAN}{e}{Fore.RESET}')
     except Exception as e:
         print(f'Ошибка: {Fore.CYAN}{e}{Fore.RESET}')
+    print(f'Выбранные места успешно {Fore.CYAN}забронированы{Fore.RESET}, ожидаем {Fore.CYAN}15{Fore.RESET} секунд')
+    sleep(15)
