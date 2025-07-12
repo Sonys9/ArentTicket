@@ -149,7 +149,7 @@ def get_hall_places(data_id, catch_link):
 def get_nice_proxy(proxies):
     while True:
         proxy = random.choice(proxies)
-        print(f"Ищем прокси... Текущая проверка: {Fore.CYAN}{proxy.split('@')[1]}{Fore.RESET}")
+        print(f"Ищем прокси... Текущая проверка: {Fore.CYAN}{proxy}{Fore.RESET}")
         try:
             r = requests.get('https://example.com',
                 proxies={
