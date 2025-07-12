@@ -1,4 +1,4 @@
-import requests, random, os
+import requests, random, os, traceback
 from time import sleep
 from bs4 import BeautifulSoup
 from colorama import Fore, init
@@ -236,7 +236,9 @@ while True:
                     break
                 except Exception as e:
                     print(f'Ошибка: {Fore.CYAN}{e}{Fore.RESET}')
+                    traceback.print_exc()
     except Exception as e:
         print(f'Ошибка: {Fore.CYAN}{e}{Fore.RESET}')
+        traceback.print_exc()
     print(f'Выбранные места успешно {Fore.CYAN}забронированы{Fore.RESET}, ожидаем {Fore.CYAN}15{Fore.RESET} секунд')
     sleep(15)
