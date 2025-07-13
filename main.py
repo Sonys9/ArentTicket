@@ -175,7 +175,7 @@ for film in films:
         time = data_info.find(class_='shedule_session_time')
         id += 1
         all_films_times.append({'time': time.text.strip(), 'id': int(data_info['data-id']), 'name': film_name})
-        print(f"[{Fore.CYAN}{id}{Fore.RESET}] {Fore.CYAN}{time.text.strip()}{Fore.RESET} ({Fore.CYAN}{data_info['data-id']}{Fore.RESET})")
+        print(f"[ID: {Fore.CYAN}{id}{Fore.RESET}] {Fore.CYAN}{time.text.strip()}{Fore.RESET} ({Fore.CYAN}{data_info['data-id']}{Fore.RESET})")
 
 choice_id = input(f'Номер сеанса:\t{Fore.CYAN}')
 print(Fore.RESET, end='')
