@@ -4,13 +4,6 @@ from bs4 import BeautifulSoup
 from colorama import Fore, init
 init()
 
-"""
-ОГРОМНАЯ просьба: не использовать этот скрипт в злых или глупых намерениях.
-Делал я его изначально не для публичного показа, а переделывать и убирать все Nestы мне лень, так что в 
-некоторых моментах код кринж (малолетние сеньоры, не надо плакать в комментарии и писать Issue о том,
-какой же код хуевый, как же нейросеть палится и как же мне надо прыгнуть в окно)
-"""
-
 catch_link = input(f'Пример: {Fore.CYAN}https://kinoteatr.ru/raspisanie-kinoteatrov/city/kinoteatralka/?date=2021-01-01{Fore.RESET}\nВведите ссылку на страницу с {Fore.CYAN}фильмами{Fore.RESET}:\t{Fore.CYAN}').strip()
 print(Fore.RESET, end='')
 
